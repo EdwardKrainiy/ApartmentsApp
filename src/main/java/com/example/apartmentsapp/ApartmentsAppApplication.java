@@ -38,6 +38,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   public static String KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD =
       "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gbx=b%3A25.939473597656242%2C53.756079259392074%2C29.51552340234373%2C54.00922553919993&gtsy=country-belarus~province-minsk~locality-minsk&lang=ru&oph=1&prc=r%3A0%2C250&rms=v.or%3A1%2C2&rnt=1&size=30&typ=let";
   public static String CHANNEL_ID = "997596106731048960";
+  public static String DEBUG_CHANNEL_ID = "997626374510612522";
   public static Flat prevFlatCatalog = new Flat();
   public static Flat lastFlatCatalog = new Flat();
 
@@ -56,11 +57,12 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
   private static void methodToGetFlat(JDA api) {
     Runnable debug = () -> {
-      api.getTextChannelById("997626374510612522").sendMessage("Works!");
+      api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Works!").queue();
     };
 
     Runnable getFlatRunnable =
         () -> {
+          api.getTextChannelById(CHANNEL_ID).sendMessage("Works!");
           URL url_catalog = null;
           URL url_kufar = null;
           try {
@@ -124,8 +126,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           String responseCatalog = textBuilderCatalog.toString();
           String responseKufar = textBuilderKufar.toString();
 
-          DateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm a z");
-
           ObjectMapper mapper = new ObjectMapper();
           ApartmentsObj apartsCatalog = null;
           try {
@@ -173,8 +173,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     executor.scheduleAtFixedRate(getFlatRunnable, 5, 5, TimeUnit.SECONDS);
-
-    ScheduledExecutorService debugging = Executors.newScheduledThreadPool(1);
-    debugging.scheduleAtFixedRate(getFlatRunnable, 0, 1, TimeUnit.MINUTES);
+    executor.scheduleAtFixedRate(debug, 5, 1, TimeUnit.MINUTES);
   }
 }
