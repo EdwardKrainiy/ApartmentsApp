@@ -174,7 +174,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     executor.scheduleAtFixedRate(getFlatRunnable, 5, 5, TimeUnit.SECONDS);
 
-    ScheduledExecutorService debug = Executors.newScheduledThreadPool(1);
-    debug.scheduleAtFixedRate(getFlatRunnable, 0, 1, TimeUnit.MINUTES);
+    ScheduledExecutorService debugging = Executors.newScheduledThreadPool(1);
+    debugging.scheduleAtFixedRate(getFlatRunnable, 0, 1, TimeUnit.MINUTES);
   }
 }
