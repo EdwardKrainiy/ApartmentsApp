@@ -31,7 +31,7 @@ import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 public class ApartmentsAppApplication extends ListenerAdapter {
   public static final String BOT_TOKEN =
-      "OTY3MDk0NjI4NjIyOTI1OTI5.GnABJk.D8xtOLsr4_SrI6D47Nz4JytkPNcqCNPhfXR3WY";
+      "OTY3MDk0NjI4NjIyOTI1OTI5.GoAVGA.FOTFqOqcdpIxX0ejttlCYv2r06YlEB6wl2lWg8";
   public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD =
       "https://r.onliner.by/sdapi/ak.api/search/apartments?rent_type%5B%5D=1_room&rent_type%5B%5D=2_rooms&price%5Bmin%5D=50&price%5Bmax%5D=220&currency=usd&only_owner=true&bounds%5Blb%5D%5Blat%5D=53.86791485688156&bounds%5Blb%5D%5Blong%5D=27.301025390625004&bounds%5Brt%5D%5Blat%5D=53.928602727199326&bounds%5Brt%5D%5Blong%5D=27.822875976562504&v=0.5573897113511816";
   public static String KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD =

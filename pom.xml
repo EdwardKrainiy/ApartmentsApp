@@ -48,7 +48,6 @@
       <version>3.2.2</version>
     </dependency>
     <!-- https://mvnrepository.com/artifact/net.dv8tion/JDA -->
-    <!-- https://mvnrepository.com/artifact/net.dv8tion/JDA -->
     <dependency>
       <groupId>net.dv8tion</groupId>
       <artifactId>JDA</artifactId>
@@ -68,6 +67,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
         <configuration>
+          <appName>sushi</appName>
           <excludes>
             <exclude>
               <groupId>org.projectlombok</groupId>
@@ -78,5 +78,4 @@
       </plugin>
     </plugins>
   </build>
-
 </project>
