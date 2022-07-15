@@ -55,6 +55,10 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   }
 
   private static void methodToGetFlat(JDA api) {
+    Runnable debug = () -> {
+      api.getTextChannelById("997626374510612522").sendMessage("Works!");
+    };
+
     Runnable getFlatRunnable =
         () -> {
           URL url_catalog = null;
@@ -169,5 +173,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     executor.scheduleAtFixedRate(getFlatRunnable, 5, 5, TimeUnit.SECONDS);
+
+    ScheduledExecutorService debug = Executors.newScheduledThreadPool(1);
+    debug.scheduleAtFixedRate(getFlatRunnable, 0, 1, TimeUnit.MINUTES);
   }
 }
