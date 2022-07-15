@@ -152,7 +152,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                 .queue();
           }
 
-          prevFlatKufar = lastFlatKufar;
+          /*prevFlatKufar = lastFlatKufar;
           lastFlatKufar = apartsKufar.getAds().get(0);
           if (lastFlatKufar.getAdTime().after(prevFlatKufar.getAdTime())) {
             textChannel
@@ -163,7 +163,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                         lastFlatKufar.getPriceByn(),
                         lastFlatKufar.getAdLink()))
                 .queue();
-          }
+          }*/
         };
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
