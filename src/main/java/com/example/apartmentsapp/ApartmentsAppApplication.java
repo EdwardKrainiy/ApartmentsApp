@@ -142,8 +142,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           prevFlatCatalog = lastFlatCatalog;
           lastFlatCatalog = apartsCatalog.getFlats().get(0);
           TextChannel textChannel = api.getTextChannelById(CHANNEL_ID);
-          if (lastFlatCatalog.getCreatedAt().after(prevFlatCatalog.getCreatedAt())
-              || lastFlatCatalog.getLastTimeUp().after(prevFlatCatalog.getLastTimeUp())) {
+          while(true) {
             textChannel
                 .sendMessage(
                     String.format(
