@@ -173,6 +173,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
     executor.scheduleAtFixedRate(getFlatRunnable, 5, 5, TimeUnit.SECONDS);
-    executor.scheduleAtFixedRate(debug, 5, 1, TimeUnit.MINUTES);
+    executor.scheduleAtFixedRate(debug, 5, 10, TimeUnit.SECONDS);
   }
 }
