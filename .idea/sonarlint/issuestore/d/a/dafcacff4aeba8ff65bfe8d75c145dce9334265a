@@ -1,0 +1,43 @@
+
+–
+java:S3008#"{Rename this field "CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ª¥Š©şÿÿÿÿ
+Œ
+java:S3008%"qRename this field "KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÅÙ£âşÿÿÿÿ
+p
+java:S3008'"URename this field "CHANNEL_ID" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(™¯Şıÿÿÿÿ
+‚
+java:S1130."lRemove the declaration of thrown exception 'java.io.IOException', as it cannot be thrown from method's body.(öûËş
+
+java:S1130."wRemove the declaration of thrown exception 'java.lang.InterruptedException', as it cannot be thrown from method's body.(öûËş
+f	java:S117;"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ë ¢
+k	java:S117<"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(…ÓÉøÿÿÿÿ
+k	java:S117E"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(¤Ãšÿÿÿÿÿ
+f	java:S117F"QRename this local variable to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(€‰­±
+—
+java:S1104#"|Make CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD a static final constant or non-public and provide accessors if needed.(ª¥Š©şÿÿÿÿ
+
+java:S1104%"rMake KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD a static final constant or non-public and provide accessors if needed.(ÅÙ£âşÿÿÿÿ
+q
+java:S1104'"VMake CHANNEL_ID a static final constant or non-public and provide accessors if needed.(™¯Şıÿÿÿÿ
+q
+java:S1104("[Make prevFlatCatalog a static final constant or non-public and provide accessors if needed.(Ûëâ‘
+v
+java:S1104)"[Make lastFlatCatalog a static final constant or non-public and provide accessors if needed.(É·É™ùÿÿÿÿ
+o
+java:S1104+"YMake prevFlatKufar a static final constant or non-public and provide accessors if needed.(ëïğà
+t
+java:S1104,"YMake lastFlatKufar a static final constant or non-public and provide accessors if needed.(´–ôùùÿÿÿÿ
+q
+java:S1444#"VMake this "public static CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD" field final(ª¥Š©şÿÿÿÿ
+g
+java:S1444%"LMake this "public static KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD" field final(ÅÙ£âşÿÿÿÿ
+K
+java:S1444'"0Make this "public static CHANNEL_ID" field final(™¯Şıÿÿÿÿ
+K
+java:S1444("5Make this "public static prevFlatCatalog" field final(Ûëâ‘
+P
+java:S1444)"5Make this "public static lastFlatCatalog" field final(É·É™ùÿÿÿÿ
+I
+java:S1444+"3Make this "public static prevFlatKufar" field final(ëïğà
+N
+java:S1444,"3Make this "public static lastFlatKufar" field final(´–ôùùÿÿÿÿ
