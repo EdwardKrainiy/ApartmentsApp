@@ -142,7 +142,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           prevFlatCatalog = lastFlatCatalog;
           lastFlatCatalog = apartsCatalog.getFlats().get(0);
           TextChannel textChannel = api.getTextChannelById(CHANNEL_ID);
-          while(true) {
+          if (lastFlatCatalog.getCreatedAt().after(prevFlatCatalog.getCreatedAt())
+              || lastFlatCatalog.getLastTimeUp().after(prevFlatCatalog.getLastTimeUp())) {
             textChannel
                 .sendMessage(
                     String.format(
@@ -152,7 +153,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                 .queue();
           }
 
-          /*prevFlatKufar = lastFlatKufar;
+          prevFlatKufar = lastFlatKufar;
           lastFlatKufar = apartsKufar.getAds().get(0);
           if (lastFlatKufar.getAdTime().after(prevFlatKufar.getAdTime())) {
             textChannel
@@ -163,7 +164,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                         lastFlatKufar.getPriceByn(),
                         lastFlatKufar.getAdLink()))
                 .queue();
-          }*/
+          }
         };
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
