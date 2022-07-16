@@ -46,6 +46,12 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   public static Ad lastFlatKufar = new Ad();
 
   public static void main(String[] args) throws IOException, LoginException, InterruptedException {
+    Runtime.getRuntime().addShutdownHook(new Thread() {
+      @Override
+      public void run() {
+        System.out.println("Shutting down by shutdown hook");
+      }
+    });
     JDA api =
         JDABuilder.createDefault(new String(Base64.getDecoder().decode(BOT_TOKEN)))
             .enableIntents(GatewayIntent.GUILD_MEMBERS)
