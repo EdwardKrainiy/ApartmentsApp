@@ -165,6 +165,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           prevFlatCatalog = lastFlatCatalog;
 
           lastFlatKufar = apartsKufar.getAds().get(0);
+          api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Prev apart: " + prevFlatKufar.toString()).queue();
+          api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Last apart: " + lastFlatKufar.toString()).queue();
           if (lastFlatKufar.getAdTime().after(prevFlatKufar.getAdTime())) {
             textChannel
                 .sendMessage(
