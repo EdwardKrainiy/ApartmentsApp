@@ -4,6 +4,7 @@ import com.example.apartmentsapp.entity.catalog.ApartmentsObj;
 import com.example.apartmentsapp.entity.catalog.Flat;
 import com.example.apartmentsapp.entity.kufar.Ad;
 import com.example.apartmentsapp.entity.kufar.ApartsKufar;
+import com.example.apartmentsapp.entity.tgbot.ApartsCustombot;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.BufferedReader;
@@ -16,11 +17,9 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Timer;
 import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
 import javax.security.auth.login.LoginException;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -28,6 +27,10 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
 public class ApartmentsAppApplication extends ListenerAdapter {
   public static final String BOT_TOKEN =
@@ -45,7 +48,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   public static Ad prevFlatKufar = new Ad();
   public static Ad lastFlatKufar = new Ad();
 
-  private static void methodToGetFlat(JDA api) {
+  private static void methodToGetFlat(JDA api, ApartsCustombot apartsCustombot)
+      throws TelegramApiException {
     api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Works!").queue();
 
     URL url_catalog = null;
@@ -53,7 +57,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       url_catalog = new URL(CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD);
     } catch (MalformedURLException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     HttpURLConnection connection_catalog = null;
@@ -61,7 +65,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       connection_catalog = (HttpURLConnection) url_catalog.openConnection();
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     connection_catalog.setRequestProperty("accept", "application/json");
@@ -71,7 +75,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       responseStreamCatalog = connection_catalog.getInputStream();
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
     StringBuilder textBuilderCatalog = new StringBuilder();
     try (Reader reader =
@@ -84,7 +88,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       }
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     String responseCatalog = textBuilderCatalog.toString();
@@ -95,7 +99,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       apartsCatalog = mapper.readValue(responseCatalog, ApartmentsObj.class);
     } catch (JsonProcessingException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api,apartsCustombot);
     }
 
     lastFlatCatalog = apartsCatalog.getFlats().get(0);
@@ -109,6 +113,13 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                   lastFlatCatalog.getPrice().amount,
                   lastFlatCatalog.getFlatUrl()))
           .queue();
+      SendMessage answer = new SendMessage();
+      answer.setText(String.format(
+          CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
+          lastFlatCatalog.getPrice().amount,
+          lastFlatCatalog.getFlatUrl()));
+      answer.setChatId("772207837");
+      apartsCustombot.execute(answer);
     }
     prevFlatCatalog = lastFlatCatalog;
 
@@ -117,7 +128,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       url_kufar = new URL(KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD);
     } catch (MalformedURLException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     HttpURLConnection connection_kufar = null;
@@ -125,7 +136,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       connection_kufar = (HttpURLConnection) url_kufar.openConnection();
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     connection_kufar.setRequestProperty("accept", "application/json");
@@ -135,7 +146,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       responseStreamKufar = connection_kufar.getInputStream();
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api,apartsCustombot);
     }
 
     StringBuilder textBuilderKufar = new StringBuilder();
@@ -149,7 +160,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       }
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     String responseKufar = textBuilderKufar.toString();
@@ -161,7 +172,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       apartsKufar = mapper2.readValue(responseKufar, ApartsKufar.class);
     } catch (JsonProcessingException e) {
       e.printStackTrace();
-      methodToGetFlat(api);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     lastFlatKufar = apartsKufar.getAds().get(0);
@@ -174,11 +185,20 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                   lastFlatKufar.getPriceByn() / 100,
                   lastFlatKufar.getAdLink()))
           .queue();
+      SendMessage answer = new SendMessage();
+      answer.setText(String.format(
+          CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
+          lastFlatKufar.getPriceUsd() / 100,
+          lastFlatKufar.getPriceByn() / 100,
+          lastFlatKufar.getAdLink()));
+      answer.setChatId("772207837");
+      apartsCustombot.execute(answer);
     }
     prevFlatKufar = lastFlatKufar;
   }
 
-  public static void main(String[] args) throws IOException, LoginException, InterruptedException {
+  public static void main(String[] args)
+      throws IOException, LoginException, InterruptedException, TelegramApiException {
 
     JDA api =
         JDABuilder.createDefault(new String(Base64.getDecoder().decode(BOT_TOKEN)))
@@ -186,12 +206,20 @@ public class ApartmentsAppApplication extends ListenerAdapter {
             .setMemberCachePolicy(MemberCachePolicy.ALL)
             .build();
 
+    TelegramBotsApi botsApi = new TelegramBotsApi(DefaultBotSession.class);
+    ApartsCustombot apartsCustombot = new ApartsCustombot();
+    botsApi.registerBot(apartsCustombot);
+
     Timer timer = new Timer();
     timer.schedule(
         new TimerTask() {
           @Override
           public void run() {
-            methodToGetFlat(api);
+            try {
+              methodToGetFlat(api, apartsCustombot);
+            } catch (TelegramApiException e) {
+              e.printStackTrace();
+            }
           }
         },
         5000,
