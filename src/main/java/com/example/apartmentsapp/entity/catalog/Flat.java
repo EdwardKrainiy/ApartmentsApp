@@ -23,6 +23,9 @@ public class Flat {
   @JsonProperty("price")
   public Price price;
 
+  @JsonProperty("photo")
+  public String photoUrl;
+
   public Flat(){
     createdAt = new Date();
     lastTimeUp = new Date();
