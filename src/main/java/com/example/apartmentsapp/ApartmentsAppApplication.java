@@ -68,7 +68,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
     Runnable getFlatRunnable =
         () -> {
-          api.getTextChannelById(CHANNEL_ID).sendMessage("Works!");
           URL url_catalog = null;
           URL url_kufar = null;
           try {
@@ -151,8 +150,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
           lastFlatCatalog = apartsCatalog.getFlats().get(0);
           TextChannel textChannel = api.getTextChannelById(CHANNEL_ID);
-          api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Prev apart: " + prevFlatCatalog.toString());
-          api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Last apart: " + lastFlatCatalog.toString());
+          api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Prev apart: " + prevFlatCatalog.toString()).queue();
+          api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Last apart: " + lastFlatCatalog.toString()).queue();
           if (lastFlatCatalog.getCreatedAt().after(prevFlatCatalog.getCreatedAt())
               || lastFlatCatalog.getLastTimeUp().after(prevFlatCatalog.getLastTimeUp())) {
             textChannel
