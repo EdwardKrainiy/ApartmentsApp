@@ -22,4 +22,9 @@ public class Flat {
 
   @JsonProperty("price")
   public Price price;
+
+  public Flat(){
+    createdAt = new Date();
+    lastTimeUp = new Date();
+  }
 }

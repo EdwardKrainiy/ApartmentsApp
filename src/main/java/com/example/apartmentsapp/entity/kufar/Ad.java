@@ -20,4 +20,8 @@ public class Ad {
   @JsonProperty("price_usd")
   public String priceUsd;
 
+  public Ad(){
+    adTime = new Date();
+  }
+
 }
