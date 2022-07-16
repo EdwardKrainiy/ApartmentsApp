@@ -197,7 +197,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       answer.setChatId("772207837");
       apartsCustombot.execute(answer);
     }
-    lastFlatCatalog = apartsCatalog.getFlats().get(0);
+    lastFlatKufar = apartsKufar.getAds().get(0);
     prevFlatKufar = lastFlatKufar;
   }
 
