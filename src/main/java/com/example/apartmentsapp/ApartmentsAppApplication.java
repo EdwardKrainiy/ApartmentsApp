@@ -121,6 +121,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       answer.setChatId("772207837");
       apartsCustombot.execute(answer);
     }
+    lastFlatCatalog = apartsCatalog.getFlats().get(0);
     prevFlatCatalog = lastFlatCatalog;
 
     URL url_kufar = null;
@@ -194,6 +195,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       answer.setChatId("772207837");
       apartsCustombot.execute(answer);
     }
+    lastFlatCatalog = apartsCatalog.getFlats().get(0);
     prevFlatKufar = lastFlatKufar;
   }
 
