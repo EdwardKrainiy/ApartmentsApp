@@ -170,8 +170,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           .sendMessage(
               String.format(
                   CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
-                  lastFlatKufar.getPriceUsd(),
-                  lastFlatKufar.getPriceByn(),
+                  lastFlatKufar.getPriceUsd() / 100,
+                  lastFlatKufar.getPriceByn() / 100,
                   lastFlatKufar.getAdLink()))
           .queue();
     }
@@ -195,8 +195,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           }
         },
         5000,
-        1000);
+        5000);
   }
-
-
 }

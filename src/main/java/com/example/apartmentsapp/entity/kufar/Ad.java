@@ -15,10 +15,10 @@ public class Ad {
   public Date adTime;
 
   @JsonProperty("price_byn")
-  public String priceByn;
+  public double priceByn;
 
   @JsonProperty("price_usd")
-  public String priceUsd;
+  public double priceUsd;
 
   public Ad(){
     adTime = new Date();
