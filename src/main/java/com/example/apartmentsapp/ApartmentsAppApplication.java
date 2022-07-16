@@ -99,7 +99,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       apartsCatalog = mapper.readValue(responseCatalog, ApartmentsObj.class);
     } catch (JsonProcessingException e) {
       e.printStackTrace();
-      methodToGetFlat(api,apartsCustombot);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     lastFlatCatalog = apartsCatalog.getFlats().get(0);
@@ -109,15 +109,16 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       textChannel
           .sendMessage(
               String.format(
-                  CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
+                  "<@212254978285371392>" + CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
                   lastFlatCatalog.getPrice().amount,
                   lastFlatCatalog.getFlatUrl()))
           .queue();
       SendMessage answer = new SendMessage();
-      answer.setText(String.format(
-          CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
-          lastFlatCatalog.getPrice().amount,
-          lastFlatCatalog.getFlatUrl()));
+      answer.setText(
+          String.format(
+              CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
+              lastFlatCatalog.getPrice().amount,
+              lastFlatCatalog.getFlatUrl()));
       answer.setChatId("772207837");
       apartsCustombot.execute(answer);
     }
@@ -147,7 +148,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       responseStreamKufar = connection_kufar.getInputStream();
     } catch (IOException e) {
       e.printStackTrace();
-      methodToGetFlat(api,apartsCustombot);
+      methodToGetFlat(api, apartsCustombot);
     }
 
     StringBuilder textBuilderKufar = new StringBuilder();
@@ -181,17 +182,18 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       textChannel
           .sendMessage(
               String.format(
-                  CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
+                  "<@212254978285371392>" + CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
                   lastFlatKufar.getPriceUsd() / 100,
                   lastFlatKufar.getPriceByn() / 100,
                   lastFlatKufar.getAdLink()))
           .queue();
       SendMessage answer = new SendMessage();
-      answer.setText(String.format(
-          CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
-          lastFlatKufar.getPriceUsd() / 100,
-          lastFlatKufar.getPriceByn() / 100,
-          lastFlatKufar.getAdLink()));
+      answer.setText(
+          String.format(
+              CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
+              lastFlatKufar.getPriceUsd() / 100,
+              lastFlatKufar.getPriceByn() / 100,
+              lastFlatKufar.getAdLink()));
       answer.setChatId("772207837");
       apartsCustombot.execute(answer);
     }
