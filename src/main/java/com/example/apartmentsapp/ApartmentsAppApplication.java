@@ -111,16 +111,14 @@ public class ApartmentsAppApplication extends ListenerAdapter {
               String.format(
                   "<@212254978285371392>" + CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
                   lastFlatCatalog.getPrice().amount,
-                  lastFlatCatalog.getFlatUrl(),
-                  lastFlatCatalog.getPhotoUrl()))
+                  lastFlatCatalog.getFlatUrl()))
           .queue();
       SendMessage answer = new SendMessage();
       answer.setText(
           String.format(
               CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
               lastFlatCatalog.getPrice().amount,
-              lastFlatCatalog.getFlatUrl(),
-              ""));
+              lastFlatCatalog.getFlatUrl()));
       answer.setChatId(TG_CHAT_ID);
       apartsCustombot.execute(answer);
     }
