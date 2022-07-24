@@ -45,7 +45,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gbx=b%3A25.939473597656242%2C53.756079259392074%2C29.51552340234373%2C54.00922553919993&gtsy=country-belarus~province-minsk~locality-minsk&lang=ru&oph=1&prc=r%3A0%2C250&rms=v.or%3A1%2C2&rnt=1&size=30&typ=let";
   public static String CHANNEL_ID = "997596106731048960";
   public static String DEBUG_CHANNEL_ID = "997626374510612522";
-  public static List<String> phonesOfAgents = Arrays.asList("");
+  public static List<String> phonesOfAgents = Arrays.asList("+375447203136");
   public static Flat prevFlatCatalog = new Flat();
   public static Flat lastFlatCatalog = new Flat();
 
