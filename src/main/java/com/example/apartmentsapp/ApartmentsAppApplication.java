@@ -17,7 +17,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
-import java.sql.Driver;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.List;
@@ -31,8 +30,6 @@ import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import org.jetbrains.annotations.Nullable;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -68,8 +65,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
     kufarFlow(api, apartsCustombot);
   }
 
-  private static void kufarFlow(
-      JDA api, ApartsCustombot apartsCustombot)
+  private static void kufarFlow(JDA api, ApartsCustombot apartsCustombot)
       throws TelegramApiException, InterruptedException {
     URL url_kufar = null;
     try {
@@ -147,10 +143,10 @@ public class ApartmentsAppApplication extends ListenerAdapter {
         answer.setChatId(TG_CHAT_ID);
         apartsCustombot.execute(answer);
       }
+      kufarReportSeleniumPage.driver.quit();
     }
     lastFlatKufar = apartsKufar.getAds().get(0);
     prevFlatKufar = lastFlatKufar;
-    kufarReportSeleniumPage.driver.quit();
   }
 
   @Nullable
@@ -231,10 +227,10 @@ public class ApartmentsAppApplication extends ListenerAdapter {
         answer.setChatId(TG_CHAT_ID);
         apartsCustombot.execute(answer);
       }
-      lastFlatCatalog = apartsCatalog.getFlats().get(0);
-      prevFlatCatalog = lastFlatCatalog;
       catalogReportSeleniumPage.driver.quit();
     }
+    lastFlatCatalog = apartsCatalog.getFlats().get(0);
+    prevFlatCatalog = lastFlatCatalog;
     return textChannel;
   }
 
