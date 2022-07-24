@@ -2,6 +2,7 @@ package com.example.apartmentsapp;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
@@ -15,16 +16,17 @@ public class CatalogReportSeleniumPage {
 
   public WebDriver driver;
 
-  public String getCatalogAdDesc(){
+  public CatalogReportSeleniumPage() {
+    PageFactory.initElements(new ChromeDriver(), this);
+    this.driver = driver;
+    driver.manage().window().maximize();
+  }
+
+  public String getCatalogAdDesc() {
     return catalogAdDescription.getText();
   }
 
-  public String getCatalogPhone(){
+  public String getCatalogPhone() {
     return catalogPhone.getText();
-  }
-
-  public CatalogReportSeleniumPage(WebDriver driver){
-    PageFactory.initElements(driver, this);
-    this.driver = driver;
   }
 }

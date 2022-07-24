@@ -61,19 +61,15 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   private static void methodToGetFlat(JDA api, ApartsCustombot apartsCustombot)
       throws TelegramApiException, InterruptedException {
     System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
-    WebDriver driver = new ChromeDriver();
-    driver.manage().window().maximize();
-    catalogReportSeleniumPage = new CatalogReportSeleniumPage(driver);
 
     api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Works!").queue();
 
-    TextChannel textChannel = catalogFlow(api, apartsCustombot, driver);
-
-    kufarFlow(api, apartsCustombot, textChannel, driver);
+    catalogFlow(api, apartsCustombot);
+    kufarFlow(api, apartsCustombot);
   }
 
   private static void kufarFlow(
-      JDA api, ApartsCustombot apartsCustombot, TextChannel textChannel, WebDriver driver)
+      JDA api, ApartsCustombot apartsCustombot)
       throws TelegramApiException, InterruptedException {
     URL url_kufar = null;
     try {
@@ -129,8 +125,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
     lastFlatKufar = apartsKufar.getAds().get(0);
     if (lastFlatKufar.getAdTime().after(prevFlatKufar.getAdTime())) {
-      driver.get(lastFlatKufar.getAdLink());
-      kufarReportSeleniumPage = new KufarReportSeleniumPage(driver);
+      kufarReportSeleniumPage.driver.get(lastFlatKufar.getAdLink());
+      kufarReportSeleniumPage = new KufarReportSeleniumPage();
       String kufarDesc =
           kufarReportSeleniumPage
               .getKufarAdDesc()
@@ -154,11 +150,11 @@ public class ApartmentsAppApplication extends ListenerAdapter {
     }
     lastFlatKufar = apartsKufar.getAds().get(0);
     prevFlatKufar = lastFlatKufar;
-    driver.quit();
+    kufarReportSeleniumPage.driver.quit();
   }
 
   @Nullable
-  private static TextChannel catalogFlow(JDA api, ApartsCustombot apartsCustombot, WebDriver driver)
+  private static TextChannel catalogFlow(JDA api, ApartsCustombot apartsCustombot)
       throws TelegramApiException, InterruptedException {
     URL url_catalog = null;
     try {
@@ -214,8 +210,8 @@ public class ApartmentsAppApplication extends ListenerAdapter {
     TextChannel textChannel = api.getTextChannelById(CHANNEL_ID);
     if (lastFlatCatalog.getCreatedAt().after(prevFlatCatalog.getCreatedAt())
         || lastFlatCatalog.getLastTimeUp().after(prevFlatCatalog.getLastTimeUp())) {
-      driver.get(lastFlatCatalog.getFlatUrl());
-      catalogReportSeleniumPage = new CatalogReportSeleniumPage(driver);
+      catalogReportSeleniumPage.driver.get(lastFlatCatalog.getFlatUrl());
+      catalogReportSeleniumPage = new CatalogReportSeleniumPage();
       String catalogDesc =
           catalogReportSeleniumPage
               .getCatalogAdDesc()
@@ -237,7 +233,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       }
       lastFlatCatalog = apartsCatalog.getFlats().get(0);
       prevFlatCatalog = lastFlatCatalog;
-      driver.quit();
+      catalogReportSeleniumPage.driver.quit();
     }
     return textChannel;
   }
