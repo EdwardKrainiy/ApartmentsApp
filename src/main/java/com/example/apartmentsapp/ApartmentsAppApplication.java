@@ -37,7 +37,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
       "T1RZM01EazBOakk0TmpJeU9USTFPVEk1LkdRLWwzcS5JcWs4LW1UTVlSRnpid0JjQzFHUEV1NGpoa3dJUmMwcUNmVmJfSQ==";
   public static final String TG_CHAT_ID = "772207837";
   public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD =
-      "https://r.onliner.by/sdapi/ak.api/search/apartments?rent_type%5B%5D=1_room&rent_type%5B%5D=2_rooms&price%5Bmin%5D=50&price%5Bmax%5D=250&currency=usd&only_owner=true&bounds%5Blb%5D%5Blat%5D=53.86791485688156&bounds%5Blb%5D%5Blong%5D=27.301025390625004&bounds%5Brt%5D%5Blat%5D=53.928602727199326&bounds%5Brt%5D%5Blong%5D=27.822875976562504&v=0.5573897113511816";
+      "https://r.onliner.by/sdapi/ak.api/search/apartments?rent_type%5B%5D=1_room&rent_type%5B%5D=2_rooms&price%5Bmin%5D=50&price%5Bmax%5D=230&currency=usd&only_owner=true&bounds%5Blb%5D%5Blat%5D=53.86791485688156&bounds%5Blb%5D%5Blong%5D=27.301025390625004&bounds%5Brt%5D%5Blat%5D=53.928602727199326&bounds%5Brt%5D%5Blong%5D=27.822875976562504&v=0.5573897113511816";
   public static String KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD =
       "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gbx=b%3A25.939473597656242%2C53.756079259392074%2C29.51552340234373%2C54.00922553919993&gtsy=country-belarus~province-minsk~locality-minsk&lang=ru&oph=1&prc=r%3A0%2C250&rms=v.or%3A1%2C2&rnt=1&size=30&typ=let";
   public static String CHANNEL_ID = "997596106731048960";
@@ -106,13 +106,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
     TextChannel textChannel = api.getTextChannelById(CHANNEL_ID);
     if (lastFlatCatalog.getCreatedAt().after(prevFlatCatalog.getCreatedAt())
         || lastFlatCatalog.getLastTimeUp().after(prevFlatCatalog.getLastTimeUp())) {
-      textChannel
-          .sendMessage(
-              String.format(
-                  "<@212254978285371392>" + CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
-                  lastFlatCatalog.getPrice().amount,
-                  lastFlatCatalog.getFlatUrl()))
-          .queue();
       SendMessage answer = new SendMessage();
       answer.setText(
           String.format(
@@ -179,14 +172,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
     lastFlatKufar = apartsKufar.getAds().get(0);
     if (lastFlatKufar.getAdTime().after(prevFlatKufar.getAdTime())) {
-      textChannel
-          .sendMessage(
-              String.format(
-                  "<@212254978285371392>" + CONST_MESSAGES.NEW_FLAT_MESSAGE_KUFAR,
-                  lastFlatKufar.getPriceUsd() / 100,
-                  lastFlatKufar.getPriceByn() / 100,
-                  lastFlatKufar.getAdLink()))
-          .queue();
       SendMessage answer = new SendMessage();
       answer.setText(
           String.format(
