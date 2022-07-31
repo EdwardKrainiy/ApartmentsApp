@@ -39,7 +39,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD =
       "https://r.onliner.by/sdapi/ak.api/search/apartments?rent_type%5B%5D=1_room&rent_type%5B%5D=2_rooms&price%5Bmin%5D=50&price%5Bmax%5D=230&currency=usd&only_owner=true&bounds%5Blb%5D%5Blat%5D=53.86791485688156&bounds%5Blb%5D%5Blong%5D=27.301025390625004&bounds%5Brt%5D%5Blat%5D=53.928602727199326&bounds%5Brt%5D%5Blong%5D=27.822875976562504&v=0.5573897113511816";
   public static String KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD =
-      "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gbx=b%3A25.939473597656242%2C53.756079259392074%2C29.51552340234373%2C54.00922553919993&gtsy=country-belarus~province-minsk~locality-minsk&lang=ru&oph=1&prc=r%3A0%2C250&rms=v.or%3A1%2C2&rnt=1&size=30&typ=let";
+      "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gbx=b%3A27.280492274414055%2C53.85118960340103%2C28.17450472558592%2C53.914476129078544&gtsy=country-belarus~province-minsk~locality-minsk&lang=ru&oph=1&prc=r%3A0%2C230&rms=v.or%3A2%2C1&rnt=1&size=30&typ=let";
   public static String CHANNEL_ID = "997596106731048960";
   public static String DEBUG_CHANNEL_ID = "997626374510612522";
   public static Flat prevFlatCatalog = new Flat();
@@ -212,6 +212,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
           }
         },
         5000,
-        5000);
+        10000);
   }
 }
