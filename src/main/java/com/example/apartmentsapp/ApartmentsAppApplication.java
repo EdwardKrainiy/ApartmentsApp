@@ -113,7 +113,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
                             CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
                             lastFlatCatalog.getPrice().amount,
                             lastFlatCatalog.getFlatUrl()));
-            answer.setText("Проверка");
             answer.setChatId(TG_CHAT_ID);
             apartsCustombot.execute(answer);
         }
