@@ -4,6 +4,6 @@
     "goal": "deploy"
   },
   "deploy": {
-    "jarName": "target/myproject-1.0-jar-with-dependencies.jar"
+    "jarName": "target/ApartmentsApp-0.0.1-SNAPSHOT.jar"
   }
 }
