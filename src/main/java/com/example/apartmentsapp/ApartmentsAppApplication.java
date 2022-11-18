@@ -105,15 +105,6 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
         lastFlatCatalog = apartsCatalog.getFlats().get(0);
         TextChannel textChannel = api.getTextChannelById(CHANNEL_ID);
-        SendMessage answer1 = new SendMessage();
-        answer1.setText(
-                String.format(
-                        CONST_MESSAGES.NEW_FLAT_MESSAGE_CATALOG,
-                        lastFlatCatalog.getPrice().amount,
-                        lastFlatCatalog.getFlatUrl()));
-        answer1.setText("Проверка");
-        answer1.setChatId(TG_CHAT_ID);
-        apartsCustombot.execute(answer1);
         if (lastFlatCatalog.getCreatedAt().after(prevFlatCatalog.getCreatedAt())
                 || lastFlatCatalog.getLastTimeUp().after(prevFlatCatalog.getLastTimeUp())) {
             SendMessage answer = new SendMessage();
