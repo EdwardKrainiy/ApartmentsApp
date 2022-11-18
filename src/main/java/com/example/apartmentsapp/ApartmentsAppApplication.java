@@ -29,11 +29,13 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+@SpringBootApplication
 public class ApartmentsAppApplication extends ListenerAdapter {
     public static final String BOT_TOKEN =
             "T1RZM01EazBOakk0TmpJeU9USTFPVEk1LkdRLWwzcS5JcWs4LW1UTVlSRnpid0JjQzFHUEV1NGpoa3dJUmMwcUNmVmJfSQ==";
