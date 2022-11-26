@@ -39,11 +39,10 @@ import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 public class ApartmentsAppApplication extends ListenerAdapter {
     public static final String BOT_TOKEN =
             "T1RZM01EazBOakk0TmpJeU9USTFPVEk1LkdRLWwzcS5JcWs4LW1UTVlSRnpid0JjQzFHUEV1NGpoa3dJUmMwcUNmVmJfSQ==";
-    public static final String TG_CHAT_ID = "932178021";
-    public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD = "https://r.onliner.by/sdapi/ak.api/search/apartments?rent_type[]=2_rooms&price[min]=250&price[max]=360&currency=usd&metro[]=red_line&only_owner=true&bounds[lb][lat]=53.695080303894954&bounds[lb][long]=27.315444946289062&bounds[rt][lat]=54.10047600536085&bounds[rt][long]=27.80776977539063&page=1&v=0.5883952699419903";
+    public static final String TG_CHAT_ID = "345814212";
+    public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD = "https://r.onliner.by/sdapi/ak.api/search/apartments?rent_type[]=1_room&rent_type[]=2_rooms&price[min]=50&price[max]=360&currency=usd&bounds[lb][lat]=53.69467375122694&bounds[lb][long]=27.31613159179688&bounds[rt][lat]=54.10007337808282&bounds[rt][long]=27.808456420898438&v=0.7314906815172155";
     public static String KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD =
-            "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gtsy=country-belarus~province-minsk~locality-minsk~coder_district-30&lang=ru&prc=r:250,360&rms=v.or:2&rnt=1&size=30&typ=let";
-    public static String CHANNEL_ID = "997596106731048960";
+            "https://cre-api-v2.kufar.by/items-search/v1/engine/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&fkn=v.and:1&flb=v.and:3&fli=v.and:1,6&flrp=v.or:5,1&gtsy=country-belarus~province-minsk~locality-minsk&lang=ru&oph=1&prc=r:50,350&rms=v.or:1,2&rnt=1&size=30&typ=let";    public static String CHANNEL_ID = "997596106731048960";
     public static String DEBUG_CHANNEL_ID = "997626374510612522";
     public static Flat prevFlatCatalog = new Flat();
     public static Flat lastFlatCatalog = new Flat();
