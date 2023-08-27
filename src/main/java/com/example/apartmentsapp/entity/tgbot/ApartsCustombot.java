@@ -6,7 +6,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 
 public class ApartsCustombot extends TelegramLongPollingBot {
   private static final String TG_BOT_TOKEN =
-      "NTM3ODA2OTE0NDpBQUh1ajhTUFNjbUpSS0JlNFMxSjVSUGxiRk5ibm12UGgyaw==";
+      "6673838632:AAFr6djD9hzYkR9EYwYBBcOWN8MbfarWgs0";
 
   @Override
   public void onUpdateReceived(Update update) {}
@@ -18,6 +18,6 @@ public class ApartsCustombot extends TelegramLongPollingBot {
 
   @Override
   public String getBotToken() {
-    return new String(Base64.getDecoder().decode(TG_BOT_TOKEN));
+    return TG_BOT_TOKEN;
   }
 }
