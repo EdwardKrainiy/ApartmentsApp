@@ -20,6 +20,8 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Base64;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -43,10 +45,13 @@ public class ApartmentsAppApplication extends ListenerAdapter {
   public static final String BOT_TOKEN =
       "T1RZM01EazBOakk0TmpJeU9USTFPVEk1LkdRLWwzcS5JcWs4LW1UTVlSRnpid0JjQzFHUEV1NGpoa3dJUmMwcUNmVmJfSQ==";
   public static final String TG_CHAT_ID = "-1001865116617";
-  public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD = "\n"
-      + "https://r.onliner.by/sdapi/ak.api/search/apartments?price%5Bmin%5D=50&price%5Bmax%5D=260&currency=usd&only_owner=true&rent_type%5B%5D=1_room&rent_type%5B%5D=2_rooms&bounds%5Blb%5D%5Blat%5D=53.78657693504207&bounds%5Blb%5D%5Blong%5D=27.435745805680334&bounds%5Brt%5D%5Blat%5D=54.01776624246658&bounds%5Brt%5D%5Blong%5D=27.688539720855868&page=1&v=0.46606547057616043";
+  public static String CATALOG_ONLINER_1_AND_2_ROOM_FLAT_BEFORE_210_USD = "https://r.onliner"
+      + ".by/sdapi/ak.api/search/apartments?price%5Bmin%5D=50&price%5Bmax%5D=350&currency=usd"
+      + "&only_owner=true&rent_type%5B%5D=1_room&rent_type%5B%5D=2_rooms&bounds%5Blb%5D%5Blat%5D=53.78657693504207&bounds%5Blb%5D%5Blong%5D=27.435745805680334&bounds%5Brt%5D%5Blat%5D=54.01776624246658&bounds%5Brt%5D%5Blong%5D=27.688539720855868&page=1&v=0.46606547057616043";
   public static String KUFAR_1_AND_2_ROOM_FLAT_BEFORE_250_USD = "https://api.kufar"
-      + ".by/search-api/v1/search/rendered-paginated?cat=1010&cur=USD&gtsy=country-belarus&lang=ru&prc=r%3A0%2C260&rms=v.or%3A2%2C1&rnt=1&size=30&typ=let";
+      + ".by/search-api/v1/search/rendered-paginated?cat=1010&cmp=0&cur=USD&gtsy=country-belarus"
+      + "~province-minsk~locality-minsk&lang=ru&prc=r%3A0%2C350&rms=v"
+      + ".or%3A2%2C1&rnt=1&size=30&typ=let";
   public static String DEBUG_CHANNEL_ID = "997626374510612522";
   public static Flat prevFlatCatalog = new Flat();
   public static Flat lastFlatCatalog = new Flat();
@@ -56,7 +61,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
 
   private static void methodToGetFlat(JDA api, ApartsCustombot apartsCustombot)
       throws TelegramApiException {
-    api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Works!").queue();
+    api.getTextChannelById(DEBUG_CHANNEL_ID).sendMessage("Works! " + LocalDateTime.now().toString()).queue();
 
     URL url_catalog = null;
     try {
@@ -216,7 +221,7 @@ public class ApartmentsAppApplication extends ListenerAdapter {
             }
           }
         },
-        5000,
-        10000);
+        10000,
+        15000);
   }
 }
